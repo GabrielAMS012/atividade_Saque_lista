@@ -2,62 +2,28 @@ package Atividade1;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 public class Saque implements AcoesSaque {
     protected float x;
-    //protected int[] v = new int[13];
-    //protected float[] n = new float[]{200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.25f, 0.1f, 0.05f, 0.01f};
-
-    BigDecimal n1 = new BigDecimal(200);
-    BigDecimal n2 = new BigDecimal(100);
-    BigDecimal n3 = new BigDecimal(50);
-    BigDecimal n4 = new BigDecimal(20);
-    BigDecimal n5 = new BigDecimal(10);
-    BigDecimal n6 = new BigDecimal(5);
-    BigDecimal n7 = new BigDecimal(2);
-    BigDecimal n8 = new BigDecimal(1);
-    BigDecimal n9 = new BigDecimal("0.5");
-    BigDecimal n10 = new BigDecimal("0.25");
-    BigDecimal n11 = new BigDecimal("0.1");
-    BigDecimal n12 = new BigDecimal("0.05");
-    BigDecimal n13 = new BigDecimal("0.01");
-
     ArrayList<BigDecimal> notas = new ArrayList<BigDecimal>();
     ArrayList<Integer> qntdCed = new ArrayList<Integer>();
 
 
     public void criaList() {
+        notas.forEach(nota-> nota.add(new BigDecimal(2)));
 
-        notas.add(n1);
-        notas.add(n2);
-        notas.add(n3);
-        notas.add(n4);
-        notas.add(n5);
-        notas.add(n6);
-        notas.add(n7);
-        notas.add(n8);
-        notas.add(n9);
-        notas.add(n10);
-        notas.add(n11);
-        notas.add(n12);
-        notas.add(n13);
+        String values = "200;100;50;20;10;5;2;1;0.5;0.25;0.1;0.05;0.01";
+        List<String> list = Arrays.asList(values.split(";"));
+        this.notas = new ArrayList<>(list.stream().map(value-> new BigDecimal(value)).collect(Collectors.toList()));
 
-        qntdCed.add(0);
-        qntdCed.add(0);
-        qntdCed.add(0);
-        qntdCed.add(0);
-        qntdCed.add(0);
-        qntdCed.add(0);
-        qntdCed.add(0);
-        qntdCed.add(0);
-        qntdCed.add(0);
-        qntdCed.add(0);
-        qntdCed.add(0);
-        qntdCed.add(0);
-        qntdCed.add(0);
-        operacao();
+        for(int i = 0; i <= 12; i++) {
+            qntdCed.add(0);
+        }
 
     }
 
@@ -87,6 +53,7 @@ public class Saque implements AcoesSaque {
     @Override
     public void calcSaque(float x) {
         BigDecimal xBD = new BigDecimal(x);
+
         for(int i = 0; i <= 12;){
             if(xBD.compareTo(this.notas.get(i)) >= 0){
                 xBD = xBD.subtract(this.notas.get(i));
