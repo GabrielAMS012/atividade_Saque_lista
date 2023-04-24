@@ -1,6 +1,8 @@
 package Atividade1;
 
 public interface AcoesSaque {
+    public abstract void criaList();
+    public abstract void mostraValorDisponivel();
     public abstract void calcSaque(float x);
     public abstract void operacao();
     public abstract void recebeValor();
