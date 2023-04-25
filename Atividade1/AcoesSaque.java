@@ -7,5 +7,6 @@ public interface AcoesSaque {
     public abstract void operacao();
     public abstract void recebeValor();
     public abstract void validaValor();
-
+    public abstract void mostraSaldo();
+    public abstract void insereSaldo();
 }
