@@ -9,4 +9,6 @@ public interface AcoesSaque {
     public abstract void validaValor();
     public abstract void mostraSaldo();
     public abstract void insereSaldo();
+    public abstract void perguntaQntd();
+    public abstract void adicionaNota();
 }
