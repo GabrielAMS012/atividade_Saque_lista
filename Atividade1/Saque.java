@@ -60,11 +60,15 @@ public class Saque extends ClearBuffer implements AcoesSaque {
                 try {
                     System.out.println("Qual a quantidade de notas de " + nota + "?");
                     int qp = sc.nextInt();
-                    mapNotasP.put(nota, qp);
-                    break;
+                    if(qp < 0){
+                        System.out.println("Valor não pode ser menor que 0");
+                    }else {
+                        mapNotasP.put(nota, qp);
+                        break;
+                    }
                 } catch (InputMismatchException e) {
                     clearBuffer(sc);
-                    System.out.println("Valor não é um número");
+                    System.out.println("Valor inválido, não é um número");
                 }
             }
         });
@@ -86,8 +90,6 @@ public class Saque extends ClearBuffer implements AcoesSaque {
                 System.out.println("Valor maior que o saldo disponível em conta\n");
             } else if (BigDecimal.valueOf(x).compareTo(this.valorTotalDisponivel) > 0) {
                 System.out.println("Valor maior que o valor disponível para saque");
-                System.out.println("Valor de x " + x);
-                System.out.println("Valor total " + valorTotalDisponivel);
             }
         }while(x<0 || BigDecimal.valueOf(x).setScale(2, RoundingMode.HALF_EVEN)
                 .compareTo(this.valorTotalDisponivel) > 0 || this.x > this.y);
